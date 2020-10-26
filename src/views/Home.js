@@ -16,10 +16,10 @@ class Home extends React.Component {
     super(props);
     this.state = {
       exchange: "pass_usdt",
-      verticalTabs: "profile",
-      verticalTabsIcons: "home",
-      pageTabs: "home",
-      openedCollapses: ["collapseOne"]
+      uniswap: {
+        url: "",
+        text: "Uniswap Bell / USDT"
+      }
     };
   }
   componentDidMount() {
@@ -31,10 +31,26 @@ class Home extends React.Component {
   // with this function we change the active tab for all the tabs in this page
   changeActiveTab = (e, tabState, tadName) => {
     e.preventDefault();
+    const uniswap = tabState === "exchange" ? this.settingTab(tadName) : this.state.exchange;
     this.setState({
-      [tabState]: tadName
+      [tabState]: tadName,
+      uniswap: uniswap
     });
   };
+  settingTab = (exchange) => {
+    switch (exchange) {
+      case "pass_eth":
+        return {
+          url: "https://info.uniswap.org/pair/0x26cf2e9c9b1dc3a0cf1d0726e36e19fe16b1e94f",
+          text: "Uniswap PASS / ETH"
+        };
+      default:
+        return {
+          url: "",
+          text: "Uniswap Bell / USDT"
+        };
+    }
+  }
   render() {
     return (
       <>
@@ -112,24 +128,24 @@ class Home extends React.Component {
                     </div>
                     <div className="d-md-flex justify-content-between mb-45">
                       <Col md="auto" xs="12">
-                        <div className={"cus-card cus-btn active"}>
+                        <div className={"cus-card cus-btn active"} onClick={() => {document.location.href = this.state.uniswap.url;}}>
                           <svg width="52" height="40" viewBox="0 0 52 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-1">
                           <circle cx="36" cy="20" r="16" fill="#F1F3FF"/>
-                          <path d="M23.3334 3.33334H10C9.11597 3.33334 8.26812 3.68453 7.643 4.30965C7.01788 4.93478 6.66669 5.78262 6.66669 6.66668V33.3333C6.66669 34.2174 7.01788 35.0652 7.643 35.6904C8.26812 36.3155 9.11597 36.6667 10 36.6667H30C30.8841 36.6667 31.7319 36.3155 32.357 35.6904C32.9822 35.0652 33.3334 34.2174 33.3334 33.3333V13.3333L23.3334 3.33334Z" stroke="#3C50E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M23.3333 3.33334V13.3333H33.3333" stroke="#3C50E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M26.6666 21.6667H13.3333" stroke="#3C50E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M26.6666 28.3333H13.3333" stroke="#3C50E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M16.6666 15H15H13.3333" stroke="#3C50E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M23.3334 3.33334H10C9.11597 3.33334 8.26812 3.68453 7.643 4.30965C7.01788 4.93478 6.66669 5.78262 6.66669 6.66668V33.3333C6.66669 34.2174 7.01788 35.0652 7.643 35.6904C8.26812 36.3155 9.11597 36.6667 10 36.6667H30C30.8841 36.6667 31.7319 36.3155 32.357 35.6904C32.9822 35.0652 33.3334 34.2174 33.3334 33.3333V13.3333L23.3334 3.33334Z" stroke="#3C50E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M23.3333 3.33334V13.3333H33.3333" stroke="#3C50E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M26.6666 21.6667H13.3333" stroke="#3C50E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M26.6666 28.3333H13.3333" stroke="#3C50E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M16.6666 15H15H13.3333" stroke="#3C50E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg> 
-                          Uniswap Bell / USDT
+                          {this.state.uniswap.text}
                         </div>
                       </Col>
                       <Col md="auto" xs="12">
                         <div className={"cus-card cus-btn active"}>
                           <svg width="55" height="40" viewBox="0 0 55 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-1">
                           <circle cx="38.8281" cy="20" r="16" fill="#F1F3FF"/>
-                          <path d="M35 6.66666H4.99999C3.15904 6.66666 1.66666 8.15904 1.66666 9.99999V30C1.66666 31.8409 3.15904 33.3333 4.99999 33.3333H35C36.8409 33.3333 38.3333 31.8409 38.3333 30V9.99999C38.3333 8.15904 36.8409 6.66666 35 6.66666Z" stroke="#3C50E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M1.66666 16.6667H38.3333" stroke="#3C50E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M35 6.66666H4.99999C3.15904 6.66666 1.66666 8.15904 1.66666 9.99999V30C1.66666 31.8409 3.15904 33.3333 4.99999 33.3333H35C36.8409 33.3333 38.3333 31.8409 38.3333 30V9.99999C38.3333 8.15904 36.8409 6.66666 35 6.66666Z" stroke="#3C50E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M1.66666 16.6667H38.3333" stroke="#3C50E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg>
                           Enter Amount
                         </div>
@@ -138,7 +154,7 @@ class Home extends React.Component {
                         <div className={"cus-card cus-btn active"}>
                           <svg width="52" height="40" viewBox="0 0 52 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-1">
                           <circle cx="36" cy="20" r="16" fill="#F1F3FF"/>
-                          <path d="M35 25C35 25.8841 34.6488 26.7319 34.0237 27.357C33.3986 27.9821 32.5507 28.3333 31.6667 28.3333H11.6667L5 35V8.33333C5 7.44928 5.35119 6.60143 5.97631 5.97631C6.60143 5.35119 7.44928 5 8.33333 5H31.6667C32.5507 5 33.3986 5.35119 34.0237 5.97631C34.6488 6.60143 35 7.44928 35 8.33333V25Z" stroke="#3C50E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M35 25C35 25.8841 34.6488 26.7319 34.0237 27.357C33.3986 27.9821 32.5507 28.3333 31.6667 28.3333H11.6667L5 35V8.33333C5 7.44928 5.35119 6.60143 5.97631 5.97631C6.60143 5.35119 7.44928 5 8.33333 5H31.6667C32.5507 5 33.3986 5.35119 34.0237 5.97631C34.6488 6.60143 35 7.44928 35 8.33333V25Z" stroke="#3C50E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg>
                           Staking Complete
                         </div>
