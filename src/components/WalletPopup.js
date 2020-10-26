@@ -60,7 +60,7 @@ class WalletPopup extends React.Component {
                   Browse Wallet
                 </div>
                 <div className="wallet-pan-text">
-                  Use MetaMask or imToken to connect to Bella
+                  Use MetaMask or imToken to connect to Passport
                 </div>
               </div>
             </Col>
@@ -79,7 +79,7 @@ class WalletPopup extends React.Component {
                   Wallet Connect
                 </div>
                 <div className="wallet-pan-text">
-                  Use MetaMask or imToken to connect to Bella
+                  Use MetaMask or imToken to connect to Passport
                 </div>
               </div>
             </Col>
