@@ -2,20 +2,6 @@ $small: "766px";
 $medium: "992px";
 $large: "1198px";
 
-@font-face {
-    font-family: 'Poppins';
-    src: url('../fonts/poppins.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Montserrat';
-    src: url('../fonts/montserrat.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 * {
     font-family: "Poppins";
 }
