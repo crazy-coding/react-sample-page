@@ -1,5 +1,4 @@
 import React from "react";
-import classnames from "classnames";
 import { connect } from 'react-redux'
 import * as actionTypes from "store/actions";
 import CONSTANT from "store/constant";
@@ -9,7 +8,6 @@ import {
   Container,
   Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
@@ -18,7 +16,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
 } from "reactstrap";
 
 class Header extends React.Component {

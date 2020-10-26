@@ -1,25 +1,14 @@
 import React from "react";
-import classnames from "classnames";
 import { connect } from 'react-redux'
 import * as actionTypes from "store/actions";
-import CONSTANT from "store/constant";
 
 // reactstrap components
 import {
-  Container,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
-  Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col
+  Modal, 
+  ModalHeader, 
+  ModalBody, 
+  Row, 
+  Col
 } from "reactstrap";
 
 class WalletPopup extends React.Component {

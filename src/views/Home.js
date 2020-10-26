@@ -1,34 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// reactstrap components
 import {
   Container,
   Button,
-  ButtonGroup,
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
-  CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Label,
-  FormGroup,
   Input,
-  Progress,
-  Table,
   Row,
   Col,
-  NavItem,
-  NavLink,
-  Nav,
-  Alert,
-  UncontrolledTooltip,
-  InputGroup,
-  InputGroupAddon
 } from "reactstrap";
 
 class Home extends React.Component {

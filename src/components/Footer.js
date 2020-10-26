@@ -1,25 +1,10 @@
-/*eslint-disable*/
 import React from "react";
 // used for making the prop types of this component
 import PropTypes from "prop-types";
 import {
   Container,
   Button,
-  ButtonGroup,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Label,
-  FormGroup,
   Input,
-  Progress,
-  Table,
   Row,
   Col,
 } from "reactstrap";
