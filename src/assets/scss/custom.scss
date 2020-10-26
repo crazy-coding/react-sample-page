@@ -1,0 +1,460 @@
+$small: "766px";
+$medium: "992px";
+$large: "1198px";
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/poppins.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/montserrat.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "Poppins";
+}
+
+body {
+    background: #F5F9FF;
+}
+
+.navbar {
+    padding: 25px 0;
+    background: #F5F9FF;
+
+    @media (max-width: $medium) {
+        padding: 25px;
+    }
+
+    .navbar-body {
+        position: relative;
+        display: flex;
+
+        @media (min-width: $medium) {
+            width: 100%;
+        }
+    }
+
+    .navbar-brand {
+        img {
+            height: 36px;
+        }
+    }
+
+    .nav-item {
+        margin: 0 10px;
+
+        .nav-link {
+            font-size: 16px;
+            color: black;
+            cursor: pointer;
+        }
+
+    }
+
+    .navbar-toggler {
+        border: none;
+
+        img {
+            margin: 5px 0;
+            height: 23px;
+        }
+    }
+
+    .language {
+        margin: 0;
+        margin-right: 10px;
+        position: absolute;
+        right: 50px;
+        top: 5px;
+
+        @media (min-width: $medium) {
+            right: 0;
+            margin-right: 0;
+        }
+
+        .nav-link {
+            color: #3C50E0;
+            font-weight: bold;
+        }
+    }
+}
+
+.content {
+    margin-top: 160px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.card {
+    border-radius: 1.3rem;
+    border: none;
+
+    .card-body {
+        padding: 12px;
+    }
+
+    margin-bottom: 40px;
+}
+
+.cus-card {
+    padding: 20px;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 16px;
+
+    &.active {
+        background: #F5F9FF;
+        color: #3C50E0;
+    }
+
+    @media (max-width: $small) {
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 13px;
+    }
+
+    @media (min-width: $medium) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    @media (min-width: $large) {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+.card-stats {
+    padding: 40px;
+
+    @media (max-width: $medium) {
+        padding: 20px 10px;
+
+        .col-md-auto {
+            padding: 0;
+        }
+    }
+
+    .cus-card {
+        border-radius: 50px;
+        padding: 32px;
+
+        @media (max-width: $small) {
+            .col-6 {
+                padding: 0;
+            }
+        }
+
+        .cus-card-title {
+            font-weight: 800;
+            margin-bottom: 48px;
+
+            @media (max-width: $large) {
+                font-size: 2rem;
+            }
+
+            @media (max-width: $medium) {
+                font-size: 22px;
+            }
+
+            @media (max-width: $small) {
+                margin-bottom: 0;
+                font-size: 18px;
+            }
+        }
+
+        .cus-card-info {
+            font-weight: 500;
+            font-size: 20px;
+            color: #798A9E;
+
+            @media (max-width: $medium) {
+                font-size: 16px;
+            }
+
+            @media (max-width: $small) {
+                font-size: 14px;
+            }
+        }
+
+        &.cus-btn {
+            border: 2px solid #3C50E0;
+            padding: 14px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            text-align: center;
+            background-color: white;
+
+            img {
+                height: 32px;
+
+                @media (max-width: $large) {
+                    height: 25px;
+                }
+            }
+
+            @media (max-width: $large) {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+
+            @media (max-width: $medium) {
+                padding: 10px;
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+.card-info {
+    font-size: 20px;
+    font-weight: 500;
+    color: #798A9E;
+
+    @media (max-width: $medium) {
+        font-size: 14px;
+    }
+}
+
+.card-deposit {
+    padding: 40px;
+
+    @media (max-width: $medium) {
+        padding: 20px 10px;
+
+        .col-md-auto {
+            padding: 0;
+        }
+    }
+
+    .dep-text {
+        font-size: 24px;
+        font-weight: 500;
+        color: black;
+
+        @media (max-width: $medium) {
+            font-size: 20px;
+        }
+    }
+
+    a {
+        font-weight: 500;
+        font-size: 20px;
+
+        @media (max-width: $medium) {
+            font-size: 16px;
+        }
+    }
+
+    .staking-amount-inputgroup {
+        border: 2px solid #3C50E0;
+        display: flex;
+        padding: 8px;
+        border-radius: 13px;
+
+        input {
+            border: none;
+            width: calc(100% - 100px);
+            height: 58px;
+            padding: 10px 20px;
+            font-size: 20px;
+            font-weight: 500;
+
+            @media (max-width: $medium) {
+                font-size: 16px;
+            }
+        }
+
+        button {
+            width: 100px;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 24px;
+        }
+    }
+}
+
+.card-advertise {
+    background-color: #4D62FF !important;
+
+    .advertising {
+        color: #fff;
+        border: 1px solid #fff;
+        border-radius: 15px;
+        padding: 98px 0;
+        font-size: 40px;
+        font-weight: 800;
+        font-family: 'Montserrat';
+        text-align: center;
+
+        @media (max-width: $medium) {
+            padding: 150px 0;
+        }
+
+        @media (max-width: $small) {
+            padding: 40px 0;
+            font-size: 26px;
+        }
+
+        .ad-point {
+            position: absolute;
+
+            &.red {
+                top: 9px;
+                left: 50px;
+            }
+
+            &.yellow {
+                bottom: 9px;
+                left: 27px;
+            }
+
+            &.pink {
+                bottom: 50px;
+                right: 9px;
+            }
+        }
+    }
+}
+
+.btn {
+    border-radius: 25px;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 15px 0px;
+    color: #3C50E0;
+    border-color: #3C50E0;
+
+    &.btn-primary {
+        color: #fff;
+        background-color: #3C50E0;
+        border-color: #3C50E0;
+
+        &:hover {
+            color: #3C50E0;
+            background-color: #fff;
+        }
+    }
+
+    &.btn-outline-primary {
+        background-color: #fff;
+
+        &:hover {
+            background-color: #3C50E0;
+        }
+    }
+}
+
+.card-actions {
+    margin-bottom: 40px;
+}
+
+.mb-45 {
+    margin-bottom: 2rem;
+}
+
+footer {
+    padding: 60px 20px;
+    color: #798A9E;
+    font-size: 16px;
+    font-weight: 400;
+
+    .logo {
+        height: 40px;
+        margin-bottom: 30px;
+    }
+
+    a {
+        line-height: 40px;
+        color: #333333;
+    }
+
+    .email-inputgroup {
+        display: flex;
+        border-radius: 15px;
+        background: white;
+
+        input {
+            border: none;
+            width: calc(100% - 60px);
+            height: 58px;
+            padding: 10px 20px;
+            font-size: 20px;
+            font-weight: 500;
+            background-color: transparent;
+
+            @media (max-width: $medium) {
+                font-size: 16px;
+            }
+        }
+
+        button {
+            width: 60px;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 24px;
+        }
+    }
+
+    .social-btn {
+        padding: 15px;
+        border: none;
+        border-radius: 15px;
+        margin-right: 15px;
+        width: 58px;
+        height: 58px;
+    }
+}
+
+.wallet-popup {
+    .modal-header {
+        border-bottom: none;
+        padding: 48px 36px 0;
+
+        .modal-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: #4D62FF;
+        }
+    }
+
+    .modal-body {
+        padding: 36px;
+        margin-bottom: 30px;
+    }
+
+    .wallet-pan {
+        padding: 35px;
+        border-radius: 50px;
+        transition: all 0.3s;
+
+        &:hover {
+            box-shadow: grey 2px 2px 5px;
+        }
+
+        .wallet-pan-icon {
+            margin-bottom: 36px;
+        }
+
+        .wallet-pan-title {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .wallet-pan-text {
+            font-size: 13px;
+            color: #798A9E;
+            font-weight: 500;
+        }
+    }
+}
