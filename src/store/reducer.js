@@ -4,7 +4,7 @@ import config from './../config';
 const initialState = {
     ...config,
     isFullScreen: false,
-    wallet: false,
+    ethAddress: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,11 +24,22 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 lang: action.lang
             };
-        case actionTypes.WALLET:
+        case actionTypes.WEB3_RECEIVE_ACCOUNT:
             return {
                 ...state,
-                wallet: action.wallet
+                ethAddress: action.address
             };
+        
+        case actionTypes.WEB3_CHANGE_ACCOUNT:
+            return {
+                ...state,
+                ethAddress: action.address
+            };
+        case actionTypes.WEB3_LOGOUT:
+            return {
+                ...state,
+                ethAddress: null
+            }
         default:
             return state;
     }

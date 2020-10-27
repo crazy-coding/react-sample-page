@@ -16,10 +16,8 @@ class Home extends React.Component {
     super(props);
     this.state = {
       exchange: "pass_eth",
-      uniswap: {
-        url: "https://info.uniswap.org/pair/0x26cf2e9c9b1dc3a0cf1d0726e36e19fe16b1e94f",
-        text: "PASS / ETH"
-      }
+      pair: "PASS / ETH",
+      url: "https://info.uniswap.org/pair/0x26cf2e9c9b1dc3a0cf1d0726e36e19fe16b1e94f",
     };
   }
   componentDidMount() {
@@ -34,7 +32,8 @@ class Home extends React.Component {
     const uniswap = tabState === "exchange" ? this.settingTab(tadName) : this.state.exchange;
     this.setState({
       [tabState]: tadName,
-      uniswap: uniswap
+      url: uniswap.url,
+      pair: uniswap.pair
     });
   };
   settingTab = (exchange) => {
@@ -42,12 +41,12 @@ class Home extends React.Component {
       case "pass_eth":
         return {
           url: "https://info.uniswap.org/pair/0x26cf2e9c9b1dc3a0cf1d0726e36e19fe16b1e94f",
-          text: "PASS / ETH"
+          pair: "PASS / ETH"
         };
       default:
         return {
           url: "",
-          text: "Bell / USDT"
+          pair: "PAZZI / PASS"
         };
     }
   }
@@ -128,7 +127,7 @@ class Home extends React.Component {
                     </div>
                     <div className="d-md-flex justify-content-between mb-45">
                       <Col md="auto" xs="12">
-                        <div className={"cus-card cus-btn active"} onClick={() => {window.open(this.state.uniswap.url);}}>
+                        <div className={"cus-card cus-btn active"} onClick={() => {window.open(this.state.url);}}>
                           <svg width="52" height="40" viewBox="0 0 52 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-1">
                           <circle cx="36" cy="20" r="16" fill="#F1F3FF"/>
                           <path d="M23.3334 3.33334H10C9.11597 3.33334 8.26812 3.68453 7.643 4.30965C7.01788 4.93478 6.66669 5.78262 6.66669 6.66668V33.3333C6.66669 34.2174 7.01788 35.0652 7.643 35.6904C8.26812 36.3155 9.11597 36.6667 10 36.6667H30C30.8841 36.6667 31.7319 36.3155 32.357 35.6904C32.9822 35.0652 33.3334 34.2174 33.3334 33.3333V13.3333L23.3334 3.33334Z" stroke="#3C50E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -137,7 +136,7 @@ class Home extends React.Component {
                           <path d="M26.6666 28.3333H13.3333" stroke="#3C50E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           <path d="M16.6666 15H15H13.3333" stroke="#3C50E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg> 
-                          Uniswap {this.state.uniswap.text}
+                          Uniswap {this.state.pair}
                         </div>
                       </Col>
                       <Col md="auto" xs="12">
@@ -181,10 +180,10 @@ class Home extends React.Component {
                     </div>
                     <Row className="card-info">
                       <Col md="6" lg="12" xs="12" className="mb-3">
-                        Balance: 0.0000 ({this.state.uniswap.text} Uni LP)
+                        Balance: 0.0000 ({this.state.pair} Uni LP)
                       </Col>
                       <Col md="6" lg="12" xs="12">
-                        Staked: 0.0000 ({this.state.uniswap.text} Uni LP)
+                        Staked: 0.0000 ({this.state.pair} Uni LP)
                       </Col>
                     </Row>
                   </CardBody>

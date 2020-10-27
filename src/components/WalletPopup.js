@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from 'react-redux'
 import * as actionTypes from "store/actions";
+import isEmpty from 'lodash/isEmpty';
+import range from 'lodash/range';
 
 // reactstrap components
 import {
@@ -16,11 +18,82 @@ class WalletPopup extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
+      accountsError: "",
+      accounts: []
     };
+    this.interval = null;
   }
   componentWillMount() {
-    if (!this.props.wallet) {
+    if (!this.props.ethAddress) {
       this.togglePopup();
+    }
+  }
+  componentDidMount() {
+  }
+  initPoll = () => {
+    if (!this.interval) {
+      this.interval = setInterval(this.fetchAccounts, 1000);
+    }
+  }
+  fetchAccounts = () => {
+    const { web3 } = window;
+    const ethAccounts = this.getAccounts();
+
+    if (isEmpty(ethAccounts)) {
+      web3 && web3.currentProvider && web3.currentProvider.enable()
+      .then(
+        accounts => {
+          this.handleAccounts(accounts)
+        }
+      )
+      .catch((err) => {
+        this.setState({
+          accountsError: err
+        });
+      });
+    } else {
+      this.handleAccounts(ethAccounts);
+    }
+  }
+  handleAccounts = (accounts, isConstructor = false) => {
+    let next = accounts[0];
+    let curr = this.props.ethAddress;
+    next = next && next.toLowerCase();
+    curr = curr && curr.toLowerCase();
+    const didChange = curr && next && (curr !== next);
+    
+    const didLogin = !curr && next;
+    const didLogout = curr && !next;
+
+    if (didLogout) {
+      this.props.onLogoutEtherAddress();
+    } else if (didLogin || (isConstructor && next)) {
+      this.setState({
+        accountsError: null,
+        accounts: accounts
+      });
+      this.props.onReceiveEtherAddress(next);
+    } else if (didChange && !isConstructor) {
+      this.setState({
+        accountsError: null,
+        accounts
+      });
+      this.props.onChangeEtherAddress(next);
+    }
+  }
+  getAccounts = () => {
+    const { web3 } = window;
+
+    try {
+      const { web3 } = window;
+      const isV1 = /^1/.test(web3.version);
+      // throws if no account selected
+      const getV1Wallets = () => range(web3.eth.accounts.wallet.length).map(i => web3.eth.accounts.wallet[i]).map(w => w.address);
+      const accounts = isV1 ? getV1Wallets() : web3.eth.accounts;
+
+      return accounts;
+    } catch (e) {
+      return [];
     }
   }
   togglePopup = () => {
@@ -28,6 +101,8 @@ class WalletPopup extends React.Component {
   }
   onBrowseWallet = () => {
     this.togglePopup();
+    this.fetchAccounts();
+    this.initPoll();
   }
   onWalletConnect = () => {
     this.togglePopup();
@@ -92,13 +167,15 @@ class WalletPopup extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    wallet: state.wallet
+    ethAddress: state.ethAddress
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-      togglePopup: () => dispatch({ type: actionTypes.WALLET })
+      onReceiveEtherAddress: (address) => dispatch({ type: actionTypes.WEB3_RECEIVE_ACCOUNT, address }),
+      onChangeEtherAddress: (address) => dispatch({ type: actionTypes.WEB3_CHANGE_ACCOUNT, address }),
+      onLogoutEtherAddress: () => dispatch({ type: actionTypes.WEB3_LOGOUT })
   }
 };
 
