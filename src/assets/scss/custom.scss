@@ -403,6 +403,22 @@ footer {
 }
 
 .wallet-popup {
+    font-weight: 500;
+    font-size: 20px;
+
+    .modal-msg-header {
+        color: black;
+        margin-bottom: 0.5rem;
+        word-break: break-all;
+    }
+
+    .modal-msg-body {
+        color: #798A9E;
+        word-break: break-all;
+        @media (max-width: $medium) {
+            font-size: 16px;
+        }
+    }
     .modal-header {
         border-bottom: none;
         padding: 48px 36px 0;
@@ -411,6 +427,9 @@ footer {
             font-size: 40px;
             font-weight: 800;
             color: #4D62FF;
+            @media (max-width: $medium) {
+                font-size: 26px;
+            }
         }
     }
 

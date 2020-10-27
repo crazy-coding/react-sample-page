@@ -110,7 +110,7 @@ class WalletPopup extends React.Component {
     }
   }
   togglePopup = () => {
-    this.setState({ isOpen: !this.state.isOpen });
+    this.setState({ isOpen: !this.state.isOpen }, () => {document.body.classList.remove('modal-open');});
   }
   onBrowseWallet = () => {
     this.togglePopup();
@@ -121,7 +121,6 @@ class WalletPopup extends React.Component {
     this.togglePopup();
   }
   render() {
-    console.log(this.state)
     return (
       <Modal isOpen={this.state.isOpen} toggle={this.togglePopup} size="lg" className="wallet-popup">
         {this.state.accountsError != "" && <>
@@ -134,8 +133,8 @@ class WalletPopup extends React.Component {
             </button>
           }>Error</ModalHeader>
           <ModalBody>
-            {this.state.accountsError.message}
-            {this.state.accountsError.code == -32002 && " Please connect your wallet on browser."}
+            <p className="modal-msg-header">{this.state.accountsError.message}</p>
+            <p className="modal-msg-header">{this.state.accountsError.code == -32002 && " Please connect your wallet on browser."}</p>
           </ModalBody>
         </>}
         {this.props.ethAddress && !this.state.accountsError && <>
@@ -146,9 +145,10 @@ class WalletPopup extends React.Component {
               <path d="M10 10L30 30" stroke="#798A9E" strokeWidth="3.33333" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-          }>Wallet added successfully</ModalHeader>
+          }>Choose a wallet</ModalHeader>
           <ModalBody>
-            Address: {this.state.accounts[0]}
+            <p className="modal-msg-header">Address: </p>
+            <p className="modal-msg-body">{this.state.accounts[0]}</p>
           </ModalBody>
         </>}
         {!this.props.ethAddress && !this.state.accountsError && <>
